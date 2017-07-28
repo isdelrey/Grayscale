@@ -1,3 +1,6 @@
+/* Config */
+let config = require('../config.js');
+
 /* Libraries */
 var lib = {};
 lib.gad = require('git-auto-deploy');
