@@ -1,11 +1,12 @@
 /* Libraries */
 var lib = {};
 lib.gad = require('git-auto-deploy');
-lib.app = require('express')();
+lib.express = require('express');
+lib.app = lib.express();
 
 lib.app.configure(function(){
-  lib.app.use(express.bodyParser());
-  lib.app.use(app.router);
+  lib.app.use(lib.express.bodyParser());
+  lib.app.use(lib.app.router);
 });
 
 module.exports = class SelfDeployment {
