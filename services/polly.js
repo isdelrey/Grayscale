@@ -28,7 +28,6 @@ module.exports = class Polly {
                     lib.fs.writeFile('output/audio/last.mp3', data.AudioStream, function() {
                         resolve();
                     });
-                    console.log(data);
                 }
             });
         });
