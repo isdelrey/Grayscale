@@ -7,7 +7,7 @@ lib.localtunnel = require('localtunnel');
 
 
 module.exports = class Tunnel {
-    constructor(service, port) {
+    constructor(port, service) {
         // establish tunnel
         this.tunnel = lib.localtunnel(port, { subdomain: config.tunnels.subdomain }, function(err, tunnel) {
             if(err)
