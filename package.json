@@ -24,6 +24,8 @@
     "mic": "latest",
     "aws-sdk": "latest",
     "localtunnel": "latest",
-    "death": "latest"
+    "death": "latest",
+    "express": "latest",
+    "git-auto-deploy": "latest"
   }
 }
