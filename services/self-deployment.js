@@ -3,6 +3,11 @@ var lib = {};
 lib.gad = require('git-auto-deploy');
 lib.app = require('express')();
 
+app.configure(function(){
+  app.use(express.bodyParser());
+  app.use(app.router);
+});
+
 module.exports = class SelfDeployment {
     constructor() {
         // listen for webhook
