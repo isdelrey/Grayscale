@@ -3,8 +3,7 @@ let Orchestrator = require('./orchestrator.js');
 let Tunnel = require('./services/tunnel.js');
 
 let tunnels = {};
-tunnels.vnc = new Tunnel(5900, 'VNC');
-
+tunnels.vnc = new Tunnel(8080, 'Server for Github Websocket');
 Death(function(signal, err) {
     // (resolution of all promises (to close tunnels)) triggers exit
     var promises = [];
