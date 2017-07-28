@@ -15,6 +15,7 @@ module.exports = class SelfDeployment {
         // listen for webhook
         lib.app.post('/deployment', function(req, res) {
             if(req.body.secret == config.self_deployment.secret)
+                // deploy
                 gad.deploy();
         });
 
