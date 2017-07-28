@@ -1,0 +1,29 @@
+{
+  "name": "home",
+  "version": "1.0.0",
+  "description": "home voice assistant",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ivosequeros/Home.git"
+  },
+  "author": "Ivo Sequeros del Rey",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ivosequeros/Home/issues"
+  },
+  "homepage": "https://github.com/ivosequeros/Home#readme",
+  "devDependencies": {
+    "watson-developer-cloud": "latest",
+    "play-sound": "latest",
+    "pocketsphinx-continuous": "latest",
+    "mic": "latest",
+    "aws-sdk": "latest",
+    "localtunnel": "latest",
+    "death": "latest"
+  }
+}
