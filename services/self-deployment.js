@@ -3,11 +3,9 @@ var lib = {};
 lib.gad = require('git-auto-deploy');
 lib.express = require('express');
 lib.app = lib.express();
+lib.bodyParser = require('body-parser');
 
-lib.app.configure(function(){
-  lib.app.use(lib.express.bodyParser());
-  lib.app.use(lib.app.router);
-});
+lib.app.use(bodyParser.json());
 
 module.exports = class SelfDeployment {
     constructor() {

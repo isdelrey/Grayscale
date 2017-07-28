@@ -26,6 +26,7 @@
     "localtunnel": "latest",
     "death": "latest",
     "express": "latest",
-    "git-auto-deploy": "latest"
+    "git-auto-deploy": "latest",
+    "body-parser": "latest"
   }
 }
