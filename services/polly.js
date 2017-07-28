@@ -6,7 +6,7 @@ var lib = {};
 lib.fs = require('fs');
 lib.aws = {};
 lib.aws.sdk = require('aws-sdk');
-lib.aws.sdk.config.update({accessKeyId: 'AKIAIA4CP66YEFIP5LUA', secretAccessKey: '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', region: config.aws.region});
+lib.aws.sdk.config.update({accessKeyId: config.aws.polly.accessKeyId, secretAccessKey: config.aws.polly.secretAccessKey, region: config.aws.region});
 lib.aws.polly = new lib.aws.sdk.Polly();
 
 module.exports = class Polly {
