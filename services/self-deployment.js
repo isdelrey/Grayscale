@@ -16,6 +16,7 @@ module.exports = class SelfDeployment {
         lib.app.post('/deployment', function(req, res) {
             console.log('Deployment notice');
             if(req.body.secret == config.self_deployment.secret) {
+                // some comment
                 console.log('Deployment notice verified');
                 console.log('Self-Deploying...');
                 // deploy
