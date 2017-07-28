@@ -5,7 +5,7 @@ lib.express = require('express');
 lib.app = lib.express();
 lib.bodyParser = require('body-parser');
 
-lib.app.use(bodyParser.json());
+lib.app.use(lib.bodyParser.json());
 
 module.exports = class SelfDeployment {
     constructor() {
