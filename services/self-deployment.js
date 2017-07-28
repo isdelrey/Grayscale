@@ -5,6 +5,7 @@ lib.app = require('express')();
 
 module.exports = class SelfDeployment {
     constructor() {
+        // listen for webhook
         lib.app.get('/deployment', function(req, res) {
             if(req.body.secret == config.self_deployment.secret)
                 gad.deploy();
