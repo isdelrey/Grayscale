@@ -13,7 +13,7 @@ lib.app.use(lib.bodyParser.json());
 module.exports = class SelfDeployment {
     constructor() {
         // test
-        lib.app.post('/test', function(req, res) {
+        lib.app.get('/test', function(req, res) {
             res.send('ok');
         });
         // listen for webhook
