@@ -16,7 +16,7 @@ module.exports = class SelfDeployment {
         lib.app.post('/deployment', function(req, res) {
             console.log('Self-Deploying...');
             // deploy
-            gad.deploy();
+            lib.gad.deploy();
         });
 
         lib.app.listen(80, function() {
