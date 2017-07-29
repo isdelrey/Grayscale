@@ -14,15 +14,9 @@ module.exports = class SelfDeployment {
     constructor() {
         // listen for webhook
         lib.app.post('/deployment', function(req, res) {
-            console.log('Deployment notice');
-            console.log(req.body);
-            if(req.body.secret == config.self_deployment.secret) {
-                // some comment
-                console.log('Deployment notice verified');
-                console.log('Self-Deploying...');
-                // deploy
-                gad.deploy();
-            }
+            console.log('Self-Deploying...');
+            // deploy
+            gad.deploy();
         });
 
         lib.app.listen(80, function() {
