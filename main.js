@@ -17,6 +17,7 @@ Death(function(signal, err) {
         promises.push(tunnel.closes());
     }
     Promise.all(promises).then(function() {
+        console.log('Exit point reached');
         process.exit(0);
     });
 
