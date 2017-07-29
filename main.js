@@ -2,6 +2,8 @@ var Death = require('death');
 let Orchestrator = require('./orchestrator.js');
 let Tunnel = require('./services/tunnel.js');
 
+console.log('Entry point reached');
+
 /* Tunnels */
 let tunnels = {};
 tunnels.vnc = new Tunnel(80, 'Server for Github Websocket');
