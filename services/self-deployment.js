@@ -14,7 +14,7 @@ module.exports = class SelfDeployment {
     constructor() {
         // test
         lib.app.get('/test', function(req, res) {
-            res.send('ok, alles in ordnung');
+            res.send('ok');
         });
         // listen for webhook
         lib.app.post('/deployment', function(req, res) {
