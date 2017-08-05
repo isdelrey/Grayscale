@@ -19,8 +19,7 @@ module.exports = class SelfDeployment {
         // listen for webhook
         lib.app.post('/deployment', function(req, res) {
             res.send('ok');
-            res.set("Connection", "close");
-            
+
             console.log('Self-Deploying...');
             // deploy
             lib.gad.deploy();
