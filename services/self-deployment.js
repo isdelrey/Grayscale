@@ -11,7 +11,7 @@ lib.bodyParser = require('body-parser');
 lib.app.use(lib.bodyParser.json());
 
 module.exports = class SelfDeployment {
-    constructor() {
+    constructor(death) {
         // test
         lib.app.get('/test', function(req, res) {
             res.send('ok');
@@ -22,7 +22,7 @@ module.exports = class SelfDeployment {
 
             console.log('Self-Deploying...');
             // deploy
-            lib.gad.deploy();
+            lib.gad.deploy(null, null, death);
         });
 
         lib.app.listen(80, function() {

@@ -9,7 +9,7 @@ let tunnels = {};
 tunnels.vnc = new Tunnel(80, 'Server for Github Websocket');
 
 /* On Exit */
-Death(function(signal, err) {
+let death = function(signal, err) {
     // (resolution of all promises (to close tunnels)) triggers exit
     var promises = [];
     for(var name in tunnels) {
@@ -26,11 +26,12 @@ Death(function(signal, err) {
         var tunnel = tunnels[name];
         tunnel.destroy();
     }
-});
+};
+Death(death);
 
 /* Self-Deployment */
 var SelfDeployment = require('./services/self-deployment.js');
-var selfDeployment = new SelfDeployment();
+var selfDeployment = new SelfDeployment(death);
 
 /* Ready */
 let orchestrator = new Orchestrator();
