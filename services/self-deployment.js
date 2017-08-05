@@ -22,7 +22,7 @@ module.exports = class SelfDeployment {
 
             console.log('Self-Deploying...');
             // deploy
-            lib.gad.deploy(null, null, death);
+            lib.gad.deploy(undefined, undefined, death);
         });
 
         lib.app.listen(80, function() {
