@@ -4,8 +4,9 @@
   "description": "home voice assistant",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "forever start main.js"
+    "build": "babel $src -d $build",
+    "start": "forever start main.js",
+    "test": ""
   },
   "repository": {
     "type": "git",
@@ -18,15 +19,16 @@
   },
   "homepage": "https://github.com/ivosequeros/Home#readme",
   "devDependencies": {
-    "watson-developer-cloud": "latest",
-    "play-sound": "latest",
-    "pocketsphinx-continuous": "latest",
-    "mic": "latest",
     "aws-sdk": "latest",
-    "localtunnel": "latest",
+    "babel-cli": "^6.24.1",
+    "body-parser": "latest",
     "death": "latest",
     "express": "latest",
     "git-auto-deploy": "latest",
-    "body-parser": "latest"
+    "localtunnel": "latest",
+    "mic": "latest",
+    "play-sound": "latest",
+    "pocketsphinx-continuous": "latest",
+    "watson-developer-cloud": "latest"
   }
 }
