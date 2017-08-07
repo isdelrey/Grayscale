@@ -1,3 +1,6 @@
 
-$build/
-$store/variables/config.js
+$build
+node_modules
+
+$store
+$config.js
