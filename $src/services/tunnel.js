@@ -1,27 +1,34 @@
 /* Config */
-let config = require('../config.js');
+import config from '../../$config.js';
 
 /* Libraries */
 var lib = {};
-lib.localtunnel = require('localtunnel');
+import {default as _localtunnel} from 'localtunnel';
 
 
 module.exports = class Tunnel {
     constructor(port, service) {
-        // establish tunnel
-        this.tunnel = lib.localtunnel(port, { subdomain: config.tunnels.subdomain }, function(err, tunnel) {
-            if(err)
-                console.log('Tunnel (' + service + ') could not be established: ' + err);
-            else
-                console.log('Tunnel (' + service + ') established: ' + tunnel.url);
-        });
+        this.connected = new Promise((resolve, reject) => {
+            // establish tunnel
+            this.tunnel = _localtunnel(port, { subdomain: config.tunnels.subdomain }, function(err, tunnel) {
+                if(err) {
+                    console.log(`Tunnel for ${service} ✕`);
+                    reject();
+                }
+                else {
+                    console.log(`Tunnel for ${service} ✓`)
+                    console.log(tunnel.url);
+                    resolve();
+                }
+            });
 
-        // event handling
-        this.tunnel.on('error', function() {
-                console.log('Tunnel error (' + service + '): ' + err);
-        });
-        this.tunnel.on('close', function() {
-            console.log('Tunnel (' + service + ') destroyed');
+            // event handling
+            this.tunnel.on('error', function(err) {
+                    console.log(`Tunnel for ${service} ✕: ` + err);
+            });
+            this.tunnel.on('close', function() {
+                console.log(`Tunnel for ${service} destroyed ✓`)
+            });
         });
     }
     closes() {

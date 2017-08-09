@@ -29,7 +29,6 @@ let death = function(signal, err) {
     }
 };
 Death(death);
-
 /* Self-Deployment */
 selfDeployment.setup(death);
 

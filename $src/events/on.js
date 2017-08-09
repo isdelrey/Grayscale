@@ -6,5 +6,10 @@ module.exports = class On {
         }
         (this.todo||(this.todo = [])).push(fn);
     }
-    
+    static trigger() {
+        let promises = [];
+        for(let what of this.todo)
+            promises.push(what.call());
+        return (promises == null) ? Promise.resolve() : Promise.all(promises);
+    }
 };
