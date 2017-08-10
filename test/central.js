@@ -3,8 +3,8 @@ import http from 'ava-http';
 
 let config = require('../config.js');
 
-import SelfDeployment from '../$build/services/self-deployment';
-import Hub from '../$build/central/hub';
+import SelfDeployment from '../build/services/self-deployment';
+import Hub from '../build/central/hub';
 
 test.serial('enable hub + self-deployment webhook setup', async t => {
     await Hub.enable();
