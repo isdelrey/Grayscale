@@ -1,5 +1,5 @@
 /* Config */
-import config from '../../$config.js';
+import config from '../../config.js';
 
 import Tunnel from '../services/tunnel.js';
 

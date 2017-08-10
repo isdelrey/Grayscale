@@ -1,7 +1,7 @@
 import test from 'ava';
 import http from 'ava-http';
 
-let config = require('../$config.js');
+let config = require('../config.js');
 
 import SelfDeployment from '../$build/services/self-deployment';
 import Hub from '../$build/central/hub';

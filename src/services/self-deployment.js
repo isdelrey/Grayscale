@@ -1,5 +1,5 @@
 /* Config */
-let config = require('../../$config.js');
+let config = require('../../config.js');
 
 var exec = require('child_process').exec;
 
