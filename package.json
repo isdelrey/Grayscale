@@ -4,11 +4,11 @@
   "description": "home voice assistant",
   "main": "main.js",
   "scripts": {
-    "build": "babel '$src' -d '$build'",
-    "watch": "babel --watch '$src' -d '$build'",
+    "build": "babel \"$src\" -d \"$build\"",
+    "watch": "babel --watch \"$src\" -d \"$build\"",
     "start": "node $build/app.js",
-    "test": "npm run build && ava '$test/*.js'",
-    "manual-test": "npm run build && node '$build/manual-test.js'"
+    "test": "npm run build && ava \"$test/*.js\"",
+    "manual-test": "npm run build && node \"$build/manual-test.js\""
   },
   "repository": {
     "type": "git",
