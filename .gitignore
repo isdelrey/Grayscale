@@ -1,5 +1,4 @@
-$build
+build
 node_modules
-$src/c.js
-$store
-$config.js
+src/c.js
+config.js
