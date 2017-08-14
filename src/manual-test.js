@@ -1,10 +1,11 @@
-import SelfDeployment from './services/self-deployment';
+/*import SelfDeployment from './services/self-deployment';
 import Hub from './central/hub';
 
 Hub.enable().then(function() {
     SelfDeployment.bind(Hub);
     Hub.plug();
-});
+});*/
+
 /*
 import Shutdown from './events/shutdown';
 
@@ -17,7 +18,7 @@ Shutdown.do(() => {
     console.log("ok!");
     return Promise.resolve();
 });
-
 setTimeout(() => {
     console.log('Timeout');
-}, 30000);*/
+}, 3000000);
+*/

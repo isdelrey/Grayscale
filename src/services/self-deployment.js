@@ -12,7 +12,7 @@ module.exports = class SelfDeployment {
                         console.log('Cannot redeploy in Windows');
                         return;
                     }
-                    exec('../../redeploy.sh', function(error, stdout, stderror) {
+                    exec('redeploy.sh', function(error, stdout, stderror) {
                         if(error) {
                             console.log(error);
                             return;

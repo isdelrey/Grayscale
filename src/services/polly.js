@@ -1,5 +1,7 @@
+import {default as Log} from '../services/log';
+
 /* Config */
-let config = require('../config.js');
+let config = require('../../config.js');
 
 /* Libraries */
 var lib = {};
@@ -10,7 +12,8 @@ lib.aws.sdk.config.update({accessKeyId: config.aws.polly.accessKeyId, secretAcce
 lib.aws.polly = new lib.aws.sdk.Polly();
 
 module.exports = class Polly {
-    toSpeech(text) {
+    static toSpeech(text) {
+        Log("🔊", "Polly", "Requested Speech Synthesis");
         return new Promise((resolve, reject) => {
             var params = {
                 OutputFormat: "mp3",
@@ -21,12 +24,18 @@ module.exports = class Polly {
                 };
             lib.aws.polly.synthesizeSpeech(params, function(err, data) {
                 if (err) {
-                    console.log('(!) Polly: ' + err, err.stack);
+                    Log("!", "Polly", err.stack);
                     reject();
                 }
                 else {
-                    lib.fs.writeFile('output/audio/last.mp3', data.AudioStream, function() {
-                        resolve();
+                    Log("🔊", "Polly", "Retrieved Synthesized Speech");
+                    lib.fs.writeFile('store/last.mp3', data.AudioStream, function(err) {
+                        if(err) {
+                            Log("!", "Polly", err.stack);
+                            reject();
+                        }
+                        else
+                            resolve();
                     });
                 }
             });

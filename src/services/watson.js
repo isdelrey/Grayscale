@@ -1,5 +1,5 @@
 /* Config */
-let config = require('../config.js');
+let config = require('../../config.js');
 
 /* Libraries */
 var lib = {};
@@ -20,7 +20,7 @@ module.exports = class Watson {
                 voice: config.watson.textToSpeech.voice, 
                 accept: 'audio/mp3'
             };
-            var stream = lib.watson.textToSpeech.synthesize(parameters).pipe(lib.fs.createWriteStream('output/audio/last.mp3'));
+            var stream = lib.watson.textToSpeech.synthesize(parameters).pipe(lib.fs.createWriteStream('store/last.mp3'));
             stream.on('finish', function() {
                 resolve();
             });
