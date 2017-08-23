@@ -12,15 +12,14 @@ lib.aws.sdk.config.update({accessKeyId: config.aws.polly.accessKeyId, secretAcce
 lib.aws.polly = new lib.aws.sdk.Polly();
 
 module.exports = class Polly {
-    static toSpeech(text) {
+    static toSpeech(text, who) {
         Log("🔊", "Polly", "Requested Speech Synthesis");
         return new Promise((resolve, reject) => {
             var params = {
                 OutputFormat: "mp3",
-                SampleRate: "8000",
-                Text: text,
-                TextType: "text",
-                VoiceId: "Brian"
+                Text: '<speak>' + text + '</speak>',
+                TextType: "ssml",
+                VoiceId: who
                 };
             lib.aws.polly.synthesizeSpeech(params, function(err, data) {
                 if (err) {

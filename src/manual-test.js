@@ -22,3 +22,5 @@ setTimeout(() => {
     console.log('Timeout');
 }, 3000000);
 */
+import Snowboy from './services/snowboy';
+Snowboy.enable();

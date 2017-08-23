@@ -7,9 +7,24 @@ import {default as Interpreter} from '../services/wit';
 import {default as Write} from '../io/write';
 import {default as Speak} from '../io/speak';
 
+let phases = {
+    now: function() {
+        (function() {
+            Listen.now().then(phrase => {
+                Interpreter.interpret(phrase).then(interpretation => {
+                    Log("💬", "Read", "Interpretation is: " + interpretation);
+                    phases.now();
+                }).catch(function(err) {
+                    Log("!", "Read", "Interpretation not possible: " + err);
+                });
+            });
+        })();
+    }
+}
+
 module.exports = () => {
     Log("↑", "Flux", "Started");
-
+    phases.now();
     Listen.enable();
     Interpreter.enable();
 
@@ -17,8 +32,6 @@ module.exports = () => {
         Log("⇄", "Read", "'" + msg.text + "' from " + msg.from.first_name);
         Interpreter.interpret(msg.text).then(interpretation => {
             Log("💬", "Read", "Interpretation is: " + interpretation);
-            Speak.say(msg.text);
-            Write.say(msg.from.id, "✓");
         }).catch(function(err) {
             Log("!", "Read", "Interpretation not possible: " + err);
         });

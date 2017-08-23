@@ -1,6 +1,6 @@
 import {default as Write} from '../io/write';
 
-let mode = 2; // 0: non-verbose, 1: verbose, 2: verbose (+ through telegram group)
+let mode = 1; // 0: non-verbose, 1: verbose, 2: verbose (+ through telegram group)
 
 module.exports = function(type, source, message) {
     let t = type + "  [" + source + "]  " + message;

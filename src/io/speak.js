@@ -26,9 +26,9 @@ module.exports = class Speak {
                 });
         });
     }
-    static async say(text) {
+    static async say(text, who) {
         Log("🔊", "Speak", "Saying '" + text + "'");
-        await ((config.speak.provider == 'watson') ? _watson : _polly).toSpeech(text);
+        await ((config.speak.provider == 'watson') ? _watson : _polly).toSpeech(text, who);
         return this.out("store/last.mp3");
     }
 };

@@ -16,8 +16,6 @@ config.watson.textToSpeech = {};
 config.watson.textToSpeech.username = '';
 config.watson.textToSpeech.password = '';
 
-config.watson.textToSpeech.voice = '';
-
 /* Speech to Text */
 config.watson.speechToText = {};
 config.watson.speechToText.username = '';
