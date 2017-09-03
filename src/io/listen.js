@@ -26,7 +26,7 @@ module.exports = class Listen {
                     return;
                 }
 
-                let micInstance = _mic({ 'rate': '20000', 'device':'plughw:0,0', 'debug': false, 'exitOnSilence': 8 });
+                let micInstance = _mic({ 'rate': '20000', 'device':'plughw:1,0', 'debug': false, 'exitOnSilence': 8 });
                 let micInputStream = micInstance.getAudioStream();
 
                 let stopRecording = () => {
