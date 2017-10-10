@@ -1,23 +1,21 @@
 import {default as Log} from '../services/log';
-
-/* Config */
-let config = require('../../config.js');
-
-/* Libraries */
+import config from '../../config.js';
 import {default as _fs} from 'fs';
-import {default as _watson} from '../services/watson';
-import {default as _polly} from '../services/polly';
-
-var player = require('play-sound')({});
+import {default as Polly} from '../services/polly';
+import {default as Player_} from 'play-sound';
+let player = Player_({});
 
 module.exports = class Speak {
+    static ding() {
+        this.out('resources/ding.wav');
+    }
     static out(file) {
-        Log("🔊", "Speak", "Playing");
+        Log("Speak.out", "Playing");
         return new Promise((resolve, reject) => {
             if(_fs.existsSync(file))
                 player.play(file, function(err) {
                     if(err) {
-                        Log('!', 'Speak', 'Player says ' + err);
+                        Log('Speak.out', 'Player says ' + err);
                         reject();
                     }
                     else {
@@ -26,9 +24,25 @@ module.exports = class Speak {
                 });
         });
     }
-    static async say(text, who) {
-        Log("🔊", "Speak", "Saying '" + text + "'");
-        await ((config.speak.provider == 'watson') ? _watson : _polly).toSpeech(text, who);
-        return this.out("store/last.mp3");
+    static async say(text, who = "Brian") {
+        Log("Speak.say", "Saying '" + text + "'");
+        let path = await Polly.toSpeech(text, who);
+        return this.out(path);
+    }
+    static sayFromStream(stream, who = "Brian") {
+        Log("Speak.sayFromStream", "Reading from stream");
+        let promise;
+        stream.on('data', text => {
+            Log("Speak.sayFromStream", text);
+            if(typeof promise == 'undefined')
+                promise = Speak.say(text);
+            else
+                promise.then(() => {
+                    promise = Speak.say(text);
+                });
+        });
+        stream.on('finished', text => {
+            Log("Speak.sayFromStream", "End");
+        });
     }
 };

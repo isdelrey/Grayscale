@@ -1,49 +1,47 @@
 {
-  "name": "home",
+  "name": "grayscale",
   "version": "1.0.0",
   "description": "home voice assistant",
   "main": "main.js",
   "scripts": {
     "build": "babel src -d build",
-    "watch": "babel --watch src -d build",
     "start": "node build/app.js",
-    "test": "npm run build && ava test/*.js",
-    "manual-test": "npm run build && node build/manual-test.js"
+    "debug": "node --inspect=[::]:9229 --inspect-brk"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ivosequeros/Home.git"
+    "url": "git+https://github.com/ivosequeros/Grayscale.git"
   },
   "author": "Ivo Sequeros del Rey",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ivosequeros/Home/issues"
+    "url": "https://github.com/ivosequeros/Grayscale/issues"
   },
-  "homepage": "https://github.com/ivosequeros/Home#readme",
-  "devDependencies": {
-    "ava": "^0.21.0",
-    "ava-http": "latest",
+  "homepage": "https://github.com/ivosequeros/Grayscale#readme",
+  "dependencies": {
+    "apiai": "^4.0.3",
+    "await-lock": "^1.1.2",
     "aws-sdk": "^2.100.0",
     "babel-cli": "^6.26.0",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-es2017": "^6.24.1",
-    "body-parser": "latest",
-    "coveralls": "^2.13.1",
-    "death": "latest",
-    "express": "^4.15.4",
-    "localtunnel": "latest",
-    "mic": "latest",
-    "play-sound": "latest",
-    "pocketsphinx-continuous": "latest",
-    "watson-developer-cloud": "^2.38.0"
-  },
-  "dependencies": {
     "babel-runtime": "^6.26.0",
+    "bingspeech-api-client": "^2.2.0",
+    "bluetooth-serial-port": "latest",
     "eslint": "^4.5.0",
     "eslint-plugin-async-await": "0.0.0",
+    "express": "^4.15.4",
+    "localtunnel": "^1.8.3",
     "node-record-lpcm16": "^0.3.0",
     "node-wit": "^4.3.0",
-    "telebot": "^1.2.3"
+    "node-witai-speech": "^1.0.2",
+    "play-sound": "^1.1.1",
+    "sonus": "^0.1.8",
+    "telebot": "^1.2.3",
+    "underscore": "^1.8.3"
+  },
+  "devDependencies": {
+    "babel-register": "^6.26.0"
   }
 }

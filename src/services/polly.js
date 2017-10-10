@@ -1,40 +1,44 @@
 import {default as Log} from '../services/log';
+import config from '../../config.js';
+import {default as fs} from 'fs';
 
-/* Config */
-let config = require('../../config.js');
+import {default as crypto} from 'crypto';
 
-/* Libraries */
-var lib = {};
-lib.fs = require('fs');
-lib.aws = {};
-lib.aws.sdk = require('aws-sdk');
-lib.aws.sdk.config.update({accessKeyId: config.aws.polly.accessKeyId, secretAccessKey: config.aws.polly.secretAccessKey, region: config.aws.region});
-lib.aws.polly = new lib.aws.sdk.Polly();
+import {default as Aws} from 'aws-sdk';
+Aws.config.update({accessKeyId: config.aws.polly.accessKeyId, secretAccessKey: config.aws.polly.secretAccessKey, region: config.aws.region});
+let polly = new Aws.Polly();
 
 module.exports = class Polly {
     static toSpeech(text, who) {
-        Log("🔊", "Polly", "Requested Speech Synthesis");
+        let id = crypto.createHash('md5').update(text + "-" + who).digest('hex') + ".mp3";
+        let path = 'store/' + id;
+        Log("Polly.toSpeech", "Request");
+        
+        if(fs.existsSync(__dirname + "/../../" + path)) {
+            Log("Polly.toSpeech", "In Cache");
+            return Promise.resolve(path);
+        }
         return new Promise((resolve, reject) => {
             var params = {
                 OutputFormat: "mp3",
-                Text: '<speak>' + text + '</speak>',
+                Text: '<speak>' + text + '.</speak>',
                 TextType: "ssml",
                 VoiceId: who
                 };
-            lib.aws.polly.synthesizeSpeech(params, function(err, data) {
+            polly.synthesizeSpeech(params, function(err, data) {
                 if (err) {
-                    Log("!", "Polly", err.stack);
+                    Log("Polly.toSpeech", err);
                     reject();
                 }
                 else {
-                    Log("🔊", "Polly", "Retrieved Synthesized Speech");
-                    lib.fs.writeFile('store/last.mp3', data.AudioStream, function(err) {
+                    Log("Polly.toSpeech", "Got");
+                    fs.writeFile(path, data.AudioStream, function(err) {
                         if(err) {
-                            Log("!", "Polly", err.stack);
+                            Log("Polly.toSpeech", err);
                             reject();
                         }
                         else
-                            resolve();
+                            resolve(path);
                     });
                 }
             });

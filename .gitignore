@@ -2,3 +2,4 @@ build
 node_modules
 src/c.js
 config.js
+.DS_Store
